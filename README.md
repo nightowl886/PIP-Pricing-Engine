@@ -1,4 +1,4 @@
-# PIP-Pricing-Engine
+# PIP Pricing Engine
 The **PIP Pricing Engine** is a data-driven application designed to calculate and validate medical billing under Florida’s Personal Injury Protection (PIP) insurance rules. Using CMS’s **Physician Fee Schedule (PFS) non‑QP data** , the tool generates Medicare allowed amounts by CPT code, adjusts them to the statutory 200% multiplier, and applies the 80% reimbursement rule mandated by Florida Statute 627.736.
 
 The project integrates three core datasets:
