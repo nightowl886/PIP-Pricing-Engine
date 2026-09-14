@@ -22,16 +22,7 @@ With SQL queries and Tableau dashboards, the tool enables:
 This project demonstrates practical expertise in SQL data modeling, healthcare payment systems, and insurance analytics, while providing a real-world application for billing validation and claims management.
 
 ---
-## 📊 Data Source Selection
-This project uses the CMS Physician Fee Schedule (PFS) non‑QP files (PFREV26A–D) as the core dataset.
 
-PFREV26A (Q1) provides the initial national payment amounts for 2026.
-
-PFREV26B–D (Q2–Q4) are quarterly updates that incorporate policy adjustments, RVU changes, and OPPS caps.
-
-For production use (PIP pricing tool), the project relies on PFREV26D (Q4) because it represents the final and most stable values for the year.
-
-For trend analysis, all four quarters (A–D) are imported into a unified PostgreSQL table with a quarter field, enabling cross‑quarter comparisons.
 
 ## 📊 Data Source Selection
 
@@ -39,35 +30,16 @@ This project uses the **CMS Physician Fee Schedule (PFS) non‑QP files** as the
 
 - Non‑QP files are chosen because Florida Statute 627.736 requires insurers to base payments on **Medicare Part B non‑QP allowed amounts × 200% × 80%**.
 
-- PFREV26D (Q4) is used as the primary data source because it represents the final and most stable values for the year. Earlier quarters (PFREV26A–C) may contain provisional or extreme values, especially for new technology codes (T‑codes).
-   - Example: CPT 0446T had Non‑Facility ≈ $8,896 vs. Facility ≈ $54.This occurs because new technology codes often lack stable OPPS caps in early quarters.
+- **PFREV26D (Q4)** is used as the **primary data source** because it represents the final and most stable values for the year. Earlier quarters (PFREV26A–C) may contain provisional or extreme values, especially for new technology codes (T‑codes).
 
 
 
-🧩 Why Non‑QP?
-Non‑QP files reflect the standard conversion factor applied to most physicians.
+## 🧩 Why Q4?
 
-QP files include a differential conversion factor for Qualifying APM Participants, which is not relevant for Florida PIP reimbursement.
-
-Florida Statute 627.736 requires insurers to base payments on Medicare Part B non‑QP allowed amounts × 200% × 80%.
-
-🚗 Special Case: T‑codes (Category III CPT)
-In Q1 (PFREV26A), many T‑codes show extreme discrepancies between Non‑Facility and Facility allowed amounts.
-
-Example: CPT 0446T had Non‑Facility ≈ $8,896 vs Facility ≈ $54.
-
-This occurs because new technology codes often lack stable OPPS caps in early quarters.
-
-By Q4 (PFREV26D), CMS typically revises or caps these values, resulting in more consistent Non‑Facility vs Facility amounts.
-
-Therefore, the project uses Q4 data for PIP pricing calculations, while retaining Q1–Q3 for trend visualization and anomaly analysis.
+- **Q1 anomalies**: In PFREV26A, certain CPT codes ending in T (Category III CPT) show extreme discrepancies between Non‑Facility and Facility Fee Schedule Amounts. 
+   - Example: CPT 0446T had Non‑Facility ≈ $8,896 vs. Facility ≈ $54.This occurs because new technology codes often lack stable OPPS caps in the first quarter.
 
 
+- **Q4 stability**: By PFREV26D, CMS has typically revised or capped these values, resulting in more consistent and reliable Non‑Facility vs. Facility amounts.
 
-🧩 Why Q4?
-
-Q1 anomalies: In PFREV26A, certain CPT codes ending in T (Category III CPT) show extreme discrepancies between Non‑Facility and Facility Fee Schedule Amounts. For example, Non‑Facility fees can be thousands of dollars while Facility fees are only a fraction. This occurs because new technology codes often lack stable OPPS caps in early quarters.
-
-Q4 stability: By PFREV26D, CMS has typically revised or capped these values, resulting in more consistent and reliable Non‑Facility vs Facility amounts.
-
-Production logic: To ensure accurate and legally compliant PIP pricing, the tool uses Q4 non‑QP data as the baseline.
+- **Production logic**: To ensure accurate and legally compliant PIP pricing, the tool uses **Q4 non‑QP data** as the baseline.
