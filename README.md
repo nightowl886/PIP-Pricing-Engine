@@ -34,7 +34,7 @@ This project uses the **CMS Physician Fee Schedule (PFS) non‑QP files** as the
 
 
 
-## 🧩 Why Q4?
+### 🧩 Why Q4?
 
 - **Q1 anomalies**: In PFREV26A, certain CPT codes ending in T (Category III CPT) show extreme discrepancies between Non‑Facility and Facility Fee Schedule Amounts. 
    - Example: CPT 0446T had Non‑Facility ≈ $8,896 vs. Facility ≈ $54.This occurs because new technology codes often lack stable OPPS caps in the first quarter.
