@@ -21,6 +21,23 @@ text_2 float
 
 
 );
+------------
+
+CREATE TABLE IF NOT EXISTS "CMS"."medicare_allowed_amt".locality (
+year INT,
+gpci_work decimal(10,3),
+gpci_pe decimal(10,3),
+gpci_mp decimal(10,3),
+locality CHAR(7),
+loc_desc VARCHAR(100),
+mac Char(5),
+mac_desc VARCHAR(100)
+
+
+);
+
+
+-------------
 
 CREATE TABLE IF NOT EXISTS "CMS"."medicare_allowed_amt".medicare_pfs_patch (
 Year INT,
