@@ -102,7 +102,7 @@ opps_ind,
 
 text_1 ,
 text_2,
-    'Q1' AS quarter -- 👈 Manually change this 'Q1', 'Q2', 'Q3', 'Q4' depending on which file you are loading
+    'Q2' AS quarter -- 👈 Manually change this 'Q1', 'Q2', 'Q3', 'Q4' depending on which file you are loading
 FROM medicare_allowed_amt.staging_cpt_import
 
 
@@ -123,8 +123,6 @@ mac_desc VARCHAR(100)
 
 );
 
-
-------------------------------------------------------------
 
 
 
