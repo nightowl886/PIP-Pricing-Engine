@@ -54,6 +54,61 @@ text_2 float
 
 
 ------------------------------------------------------------
+-- 3. Import data
+
+-- Example for Q2 Import:
+
+TRUNCATE TABLE staging_cpt_import;
+
+INSERT INTO medicare_allowed_amt.CPT_Allowed_amt (Year, 
+Carrier_num ,
+Locality ,
+HCPCS_code ,
+Modifier ,
+Non_fac_fee_schedule_amt ,
+Fac_fee_schedule_amt ,
+PCTC_Indicator ,
+Placeholder ,
+
+Status_Code ,
+Multi_sur_ind ,
+
+opps_non_fac_fee_amt ,
+opps_fac_fee_amt,
+opps_ind,
+
+text_1 ,
+text_2,
+quarter)
+
+
+SELECT 
+Year,
+Carrier_num ,
+Locality ,
+HCPCS_code ,
+Modifier ,
+Non_fac_fee_schedule_amt ,
+Fac_fee_schedule_amt ,
+PCTC_Indicator ,
+Placeholder ,
+
+Status_Code ,
+Multi_sur_ind ,
+
+opps_non_fac_fee_amt ,
+opps_fac_fee_amt,
+opps_ind,
+
+text_1 ,
+text_2,
+    'Q1' AS quarter -- 👈 Manually change this 'Q1', 'Q2', 'Q3', 'Q4' depending on which file you are loading
+FROM medicare_allowed_amt.staging_cpt_import
+
+
+
+
+------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS "CMS"."medicare_allowed_amt".locality (
 year INT,
