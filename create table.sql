@@ -1,3 +1,4 @@
+-- 1. Create the final destination table
 CREATE TABLE IF NOT EXISTS "CMS"."medicare_allowed_amt".CPT_Allowed_amt (
 Year INT,
 Carrier_num Varchar(10),
@@ -17,8 +18,10 @@ opps_fac_fee_amt decimal(10,2),
 opps_ind Char(5),
 
 text_1 float,
-text_2 float
+text_2 float,
 
+quarter VARCHAR(2)
+  
 
 );
 ------------
