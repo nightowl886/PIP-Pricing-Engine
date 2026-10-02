@@ -24,20 +24,50 @@ This project demonstrates practical expertise in SQL data modeling, healthcare p
 ---
 
 
-## 📊 Data Source Selection
+## 📊 Data Modeling Notes
+
 
 This project uses the **CMS Physician Fee Schedule (PFS) non‑QP files** as the foundation for calculating Florida Personal Injury Protection (PIP) insurance payments.
 
 - Non‑QP files are chosen because Florida Statute 627.736 requires insurers to base payments on **Medicare Part B non‑QP allowed amounts × 200% × 80%**.
 
-- **PFREV26D (Q4)** is used as the **primary data source** because it represents the final and most stable values for the year. Earlier quarters (PFREV26A–C) may contain provisional or extreme values, especially for new technology codes (T‑codes).
 
+- Initially assumed the business key was:
 
+ `   Locality + HCPCS Code + Modifier`
 
-### 🧩 Why Q4?
+- Duplicate checks identified a large number of apparent duplicate records.
 
-- **Q1 anomalies**: In PFREV26A, certain CPT codes ending in T (Category III CPT) show extreme discrepancies between Non‑Facility and Facility Fee Schedule Amounts. 
-   - Example: CPT 0446T had Non‑Facility ≈ $8,896 vs. Facility ≈ $54.This occurs because new technology codes often lack stable OPPS caps in the first quarter.
+- Added a quarter field (Q1, Q2, Q3, Q4) to distinguish CMS file releases, assuming later files contained additional payment records.
+
+- Further investigation revealed that the apparent duplicates were caused by different Carrier Numbers (MAC jurisdictions) rather than quarterly updates.
+
+- Identical HCPCS codes could have different allowed amounts across carriers:
+`   HCPCS: Q4322`  <br>
+`   Locality: 01 ` <br>
+`   Carrier 01212 → $144.69 `  <br>
+`   Carrier 02102 → $135.53 `  <br> 
+`   Carrier 02302 → $141.38 `  <br>
+
+- Quarterly CMS releases represent revision updates rather than supplemental datasets.
+
+- Duplicate validation using the revised business key returned zero duplicate records:
+
+Plain Text
+Year + Carrier Number + Locality + HCPCS Code + Modifier
+Show more lines
+
+Final pricing engine design uses:
+
+Plain Text
+Primary Key:
+Year + Carrier Number + Locality + HCPCS Code + Modifier
+``
+Show more lines
+
+Later CMS releases (B/C/D) are loaded as version updates that overwrite prior payment amounts.
+ 
+   - 
 
 
 - **Q4 stability**: By PFREV26D, CMS has typically revised or capped these values, resulting in more consistent and reliable Non‑Facility vs. Facility amounts.
