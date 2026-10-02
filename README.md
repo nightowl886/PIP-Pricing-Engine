@@ -53,23 +53,11 @@ This project uses the **CMS Physician Fee Schedule (PFS) non‑QP files** as the
 
 - Duplicate validation using the revised business key returned zero duplicate records:
 
-Plain Text
-Year + Carrier Number + Locality + HCPCS Code + Modifier
-Show more lines
-
-Final pricing engine design uses:
-
-Plain Text
-Primary Key:
-Year + Carrier Number + Locality + HCPCS Code + Modifier
+- Final pricing engine design uses:
+- 
+``Primary Key:`` <br>
+   ``Year + Carrier Number + Locality + HCPCS Code + Modifier
 ``
-Show more lines
 
-Later CMS releases (B/C/D) are loaded as version updates that overwrite prior payment amounts.
+- Later CMS releases (AR/B/C/D) are loaded as version updates that overwrite prior payment amounts.
  
-   - 
-
-
-- **Q4 stability**: By PFREV26D, CMS has typically revised or capped these values, resulting in more consistent and reliable Non‑Facility vs. Facility amounts.
-
-- **Production logic**: To ensure accurate and legally compliant PIP pricing, the tool uses **Q4 non‑QP data** as the baseline.
