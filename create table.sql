@@ -110,6 +110,27 @@ FROM medicare_allowed_amt.staging_cpt_import
 
 ------------------------------------------------------------
 
+
+
+  ALTER TABLE medicare_allowed_amt.cpt_allowed_amt
+RENAME COLUMN quarter TO source_ver;
+
+
+UPDATE medicare_allowed_amt.cpt_allowed_amt
+SET source_ver =
+CASE
+WHEN source_ver = 'Q1' THEN 'AR'
+WHEN source_ver = 'Q2' THEN 'B'
+WHEN source_ver = 'Q3' THEN 'C'
+WHEN source_ver = 'Q4' THEN 'D'
+ELSE source_ver
+END;
+
+
+------------------------------------------------------------
+-- 4. Renamed the original quarter field to source_ver 
+-- Standardized CMS file versions as AR, B, C, and D to reflect CMS revision releases rather than calendar quarters.
+
 CREATE TABLE IF NOT EXISTS "CMS"."medicare_allowed_amt".locality (
 year INT,
 gpci_work decimal(10,3),
