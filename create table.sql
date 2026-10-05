@@ -1,6 +1,6 @@
 ## CPT_allowed_amt table
 
--- 1. Create the final destination table
+  -- 1. Create the final destination table
 CREATE TABLE IF NOT EXISTS "CMS"."medicare_allowed_amt".CPT_Allowed_amt (
 Year INT,
 Carrier_num Varchar(10),
@@ -29,7 +29,7 @@ quarter VARCHAR(2) -- e.g., 'Q1', 'Q2', 'Q3', 'Q4'
 
 ---------------------------
 
--- 2. Create a clean staging table (matches your CSV structure exactly)
+  -- 2. Create a clean staging table (matches your CSV structure exactly)
 
 CREATE TABLE IF NOT EXISTS "CMS"."medicare_allowed_amt".staging_cpt_import (
 Year INT,
@@ -56,7 +56,7 @@ text_2 float
 
 
 ---------------------------
--- 3. Import data
+  -- 3. Import data
 
 -- Example for Q2 Import:
 
@@ -130,6 +130,8 @@ END;
 
 
 ------------------------------------------------------------
+## locality table
+
 
 CREATE TABLE IF NOT EXISTS "CMS"."medicare_allowed_amt".locality (
 year INT,
