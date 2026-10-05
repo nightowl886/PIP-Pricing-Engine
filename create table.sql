@@ -27,7 +27,7 @@ quarter VARCHAR(2) -- e.g., 'Q1', 'Q2', 'Q3', 'Q4'
 
 );
 
-------------------------------------------------------------
+---------------------------
 
 -- 2. Create a clean staging table (matches your CSV structure exactly)
 
@@ -55,7 +55,7 @@ text_2 float
 );
 
 
-------------------------------------------------------------
+---------------------------
 -- 3. Import data
 
 -- Example for Q2 Import:
@@ -108,10 +108,9 @@ text_2,
 FROM medicare_allowed_amt.staging_cpt_import
 
 
+---------------------------
 
-
-------------------------------------------------------------
--- 4. Renamed the original quarter field to source_ver 
+  -- 4. Renamed the original quarter field to source_ver 
 -- Standardized CMS file versions as AR, B, C, and D to reflect CMS revision releases rather than calendar quarters.
 
 
