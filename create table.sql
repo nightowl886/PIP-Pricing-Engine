@@ -1,4 +1,4 @@
-## CPT allowed amt
+## CPT_allowed_amt table
 
 -- 1. Create the final destination table
 CREATE TABLE IF NOT EXISTS "CMS"."medicare_allowed_amt".CPT_Allowed_amt (
@@ -145,6 +145,46 @@ mac_desc VARCHAR(100)
 
 );
 
+------------------------------------------------------------
+## RVU table
 
+
+CREATE TABLE IF NOT EXISTS "CMS"."medicare_allowed_amt".RVU (
+
+HCPCS_code char(10),
+MOD Varchar(5),
+Descr VarChar(50),
+status_code Char(2),
+not_used_medi_pay Char(5),
+work_rvu decimal(10,2),
+non_fac_pe_rvu decimal(10,2),
+non_fac_ind Varchar(10),
+fac_pe_ruv decimal(10,2),
+fac_ind VarChar(10),
+mp_rvu decimal(10,2),
+non_fac_total decimal(10,2),
+fac_total decimal(10,2),
+PCTC_ind Char(2),
+glob_days Char(4),
+pre_op decimal(10,2),
+intra_op decimal(10,2),
+post_op decimal(10,2),
+
+mult_proc char(2),
+bilat_surg char(2),
+asst_surg char(2),
+co_surg char(2),
+team_surg char(2),
+pric_surg char(2),
+endo_base Varchar(10),
+conv_fac decimal(10,4),
+
+phy_proc VarChar(20),
+cal_flag Char(2),
+dia_ind VarChar(20),
+non_fac_opps_amt decimal(10,2),
+fac_opps_amt decimal(10,2),
+mp_opps_amt decimal(10,2)
+);
 
 
