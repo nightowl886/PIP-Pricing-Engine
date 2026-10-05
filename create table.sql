@@ -1,3 +1,5 @@
+## CPT allowed amt
+
 -- 1. Create the final destination table
 CREATE TABLE IF NOT EXISTS "CMS"."medicare_allowed_amt".CPT_Allowed_amt (
 Year INT,
